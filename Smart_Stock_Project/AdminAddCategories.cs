@@ -131,7 +131,17 @@ namespace Smart_Stock_Project
             }
         }
 
+        public void refreshData()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)refreshData);
+                return;
+            }
 
+            displayCategoriesData();
+
+        }
 
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
@@ -247,6 +257,11 @@ namespace Smart_Stock_Project
                 }
 
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

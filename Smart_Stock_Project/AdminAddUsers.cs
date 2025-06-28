@@ -77,6 +77,19 @@ public bool checkConnection()
                 displayAllUsersData();
             }
         }
+
+        public void refreshData()
+        {
+            if (InvokeRequired)
+            {
+                Invoke((MethodInvoker)refreshData);
+                return;
+            }
+
+            displayAllUsersData();
+
+        }
+
         private bool IsInRuntimeMode()
         {
             return !(LicenseManager.UsageMode == LicenseUsageMode.Designtime || DesignMode);

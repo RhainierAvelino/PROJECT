@@ -17,6 +17,8 @@ namespace SmartStock_System
 {
     public partial class LoginForm : Form
     {
+
+
         SqlConnection
             connect = new SqlConnection(ConfigurationManager.ConnectionStrings["Smart_Stock_Project.Properties.Settings.SmartStockInventoryConnectionString"].ConnectionString);    
         public LoginForm()
@@ -60,26 +62,45 @@ namespace SmartStock_System
                 {
                     connect.Open();
 
-                    string selecData = "SELECT * FROM users WHERE  username = @username AND password_hash = @password_hash";
+                    string selecData = "SELECT COUNT(*) FROM users WHERE  username = @username AND password_hash = @password_hash AND status = @status";
 
                     using (SqlCommand cmd = new SqlCommand(selecData, connect))
                     {
                         cmd.Parameters.AddWithValue("@username", login_username.Text.Trim());
                         cmd.Parameters.AddWithValue("@password_hash", HashPassword(login_password.Text.Trim()));
+                        cmd.Parameters.AddWithValue("@status", "Active");
 
-                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                        DataTable table = new DataTable();
+                        int rowCount = (int)cmd.ExecuteScalar();
 
-                        adapter.Fill(table);
 
-                        if (table.Rows.Count > 0)
+                        if (rowCount > 0)
                         {
-                            MessageBox.Show("Login Succesfully!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            string selectRole = "SELECT role FROM users WHERE username = @username AND password_hash = @password_hash AND status = @status";
 
-                            MainForm mForm = new MainForm();
-                            mForm.Show();
+                            using (SqlCommand getRole = new SqlCommand(selectRole, connect))
+                            {
+                                getRole.Parameters.AddWithValue("@username", login_username.Text.Trim());
+                                getRole.Parameters.AddWithValue("@password_hash", HashPassword(login_password.Text.Trim()));
+                                getRole.Parameters.AddWithValue("@status", "Active");
+                                string userRole = (string)getRole.ExecuteScalar();
 
-                            this.Hide();
+                                if (userRole == "Admin")
+                                {
+                                    MessageBox.Show("Login Succesfully!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    MainForm mForm = new MainForm();
+                                    mForm.Show();
+
+                                    this.Hide();
+                                }
+                                else if (userRole == "Cashier")
+                                {
+                                    MessageBox.Show("Login Succesfully!", "Information Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    CasherMainForm cForm = new CasherMainForm();
+                                    cForm.Show();
+                                    this.Hide();
+                                }
+
+                            }
 
                         }
                         else
