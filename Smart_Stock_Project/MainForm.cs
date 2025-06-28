@@ -42,11 +42,43 @@ namespace Smart_Stock_Project
         private void button1_Click(object sender, EventArgs e)
         {
 
+            if (adminDashboard1 != null)
+                adminDashboard1.Visible = false;
+            if (adminAddUsers1 != null)
+                adminAddUsers1.Visible = true;
+            if (adminAddCategories1 != null)
+                adminAddCategories1.Visible = false;
+            if (adminAddProducts1 != null)
+                adminAddProducts1.Visible = false;
+            if (cashierCustomersForm1 != null)
+                cashierCustomersForm1.Visible = false;
+
+            AdminAddUsers aaForm = adminAddUsers1 as AdminAddUsers;
+            if (aaForm != null)
+            {
+                aaForm.refreshData();
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
 
+            if (adminDashboard1 != null)
+                adminDashboard1.Visible = false;
+            if (adminAddUsers1 != null)
+                adminAddUsers1.Visible = false;
+            if (adminAddCategories1 != null)
+                adminAddCategories1.Visible = false;
+            if (adminAddProducts1 != null)
+                adminAddProducts1.Visible = false;
+            if (cashierCustomersForm1 != null)
+                cashierCustomersForm1.Visible = true;
+
+            CashierCustomersForm ccForm = cashierCustomersForm1 as CashierCustomersForm;
+            if (ccForm != null)
+            {
+                ccForm.refreshData();
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -105,6 +137,80 @@ namespace Smart_Stock_Project
         private void adminAddProducts1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void adminAddProducts1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void adminAddProducts1_Load_2(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dashboard_button_Click(object sender, EventArgs e)
+        {
+
+            if (adminDashboard1 != null)
+                adminDashboard1.Visible = true;
+            if (adminAddUsers1 != null)
+                adminAddUsers1.Visible = false;
+            if (adminAddCategories1 != null)
+                adminAddCategories1.Visible = false;
+            if (adminAddProducts1 != null)
+                adminAddProducts1.Visible = false;
+            if (cashierCustomersForm1 != null)
+                cashierCustomersForm1.Visible = false;
+
+            AdminDashboard adForm = adminDashboard1 as AdminDashboard;
+
+            if (adForm != null)
+            {
+                adForm.refreshData();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            if (adminDashboard1 != null)
+                adminDashboard1.Visible = false;
+            if (adminAddUsers1 != null)
+                adminAddUsers1.Visible = false;
+            if (adminAddCategories1 != null)
+                adminAddCategories1.Visible = true;
+            if (adminAddProducts1 != null)
+                adminAddProducts1.Visible = false;
+            if (cashierCustomersForm1 != null)
+                cashierCustomersForm1.Visible = false;
+
+            AdminAddCategories aacForm = adminAddCategories1 as AdminAddCategories;
+            if (aacForm != null)
+            {
+                aacForm.refreshData();
+            }
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+            if (adminDashboard1 != null)
+                adminDashboard1.Visible = false;
+            if (adminAddUsers1 != null)
+                adminAddUsers1.Visible = false;
+            if (adminAddCategories1 != null)
+                adminAddCategories1.Visible = false;
+            if (adminAddProducts1 != null)
+                adminAddProducts1.Visible = true;
+            if (cashierCustomersForm1 != null)
+                cashierCustomersForm1.Visible = false;
+
+            AdminAddProducts aapForm = adminAddProducts1 as AdminAddProducts;
+            if (aapForm != null)
+            {
+                aapForm.refreshData();
+            }
         }
     }
 }

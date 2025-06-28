@@ -40,3 +40,28 @@ C:\Users\RumLuwe\Desktop\RhomeInventory\Smart_Stock_Project\Smart_Stock_Project\
 C:\Users\RumLuwe\Desktop\RhomeInventory\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.AdminAddCategories.resources
 C:\Users\RumLuwe\Desktop\RhomeInventory\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.exe.config
 C:\Users\RumLuwe\Desktop\RhomeInventory\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.AdminAddProducts.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\bin\Debug\SmartStockInventory.mdf
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\bin\Debug\SmartStockInventory_log.ldf
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\bin\Debug\Smart_Stock_Project.exe.config
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\bin\Debug\Smart_Stock_Project.exe
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\bin\Debug\Smart_Stock_Project.pdb
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\bin\Debug\System.Configuration.ConfigurationManager.dll
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\bin\Debug\System.Configuration.ConfigurationManager.xml
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.csproj.AssemblyReference.cache
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.AdminAddCategories.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.AdminAddProducts.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.AdminAddUsers.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.AdminDashboard.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.CasherMainForm.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.CashierCustomersForm.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.CashierOrders.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\SmartStock_System.LoginForm.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.MainForm.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.Properties.Resources.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.RegisterForm.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.csproj.GenerateResource.cache
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.csproj.CoreCompileInputs.cache
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_St.E8B87DBD.Up2Date
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.exe
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.pdb
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.exe.config

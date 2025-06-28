@@ -1,6 +1,6 @@
 ﻿namespace Smart_Stock_Project
 {
-    partial class MainForm
+    partial class CasherMainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CasherMainForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.smartstock_label = new System.Windows.Forms.Label();
             this.exit_button = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.orders = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.logout_button = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.customers = new System.Windows.Forms.Button();
+            this.add_products = new System.Windows.Forms.Button();
             this.dashboard_button = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.logo = new System.Windows.Forms.PictureBox();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.cashierOrders2 = new Smart_Stock_Project.CashierOrders();
             this.cashierCustomersForm1 = new Smart_Stock_Project.CashierCustomersForm();
             this.adminAddProducts1 = new Smart_Stock_Project.AdminAddProducts();
-            this.adminAddCategories1 = new Smart_Stock_Project.AdminAddCategories();
-            this.adminAddUsers1 = new Smart_Stock_Project.AdminAddUsers();
-            this.adminDashboard1 = new Smart_Stock_Project.AdminDashboard();
+            this.adminDashboard2 = new Smart_Stock_Project.AdminDashboard();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -64,7 +64,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1304, 56);
-            this.panel1.TabIndex = 0;
+            this.panel1.TabIndex = 1;
             // 
             // label2
             // 
@@ -84,10 +84,9 @@
             this.smartstock_label.ForeColor = System.Drawing.Color.RoyalBlue;
             this.smartstock_label.Location = new System.Drawing.Point(17, 15);
             this.smartstock_label.Name = "smartstock_label";
-            this.smartstock_label.Size = new System.Drawing.Size(172, 27);
+            this.smartstock_label.Size = new System.Drawing.Size(191, 27);
             this.smartstock_label.TabIndex = 29;
-            this.smartstock_label.Text = "ADMIN\'S PORTAL";
-            this.smartstock_label.Click += new System.EventHandler(this.register_label_Click);
+            this.smartstock_label.Text = "CASHIER\'S PORTAL";
             // 
             // exit_button
             // 
@@ -107,12 +106,11 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(242)))), ((int)(((byte)(230)))));
+            this.panel2.Controls.Add(this.orders);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.logout_button);
-            this.panel2.Controls.Add(this.button4);
-            this.panel2.Controls.Add(this.button2);
-            this.panel2.Controls.Add(this.button3);
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.customers);
+            this.panel2.Controls.Add(this.add_products);
             this.panel2.Controls.Add(this.dashboard_button);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.logo);
@@ -120,7 +118,22 @@
             this.panel2.Location = new System.Drawing.Point(0, 56);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(183, 738);
-            this.panel2.TabIndex = 1;
+            this.panel2.TabIndex = 2;
+            // 
+            // orders
+            // 
+            this.orders.FlatAppearance.BorderSize = 0;
+            this.orders.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
+            this.orders.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
+            this.orders.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.orders.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.orders.Location = new System.Drawing.Point(3, 346);
+            this.orders.Name = "orders";
+            this.orders.Size = new System.Drawing.Size(177, 41);
+            this.orders.TabIndex = 37;
+            this.orders.Text = "ORDERS";
+            this.orders.UseVisualStyleBackColor = true;
+            this.orders.Click += new System.EventHandler(this.orders_Click);
             // 
             // pictureBox1
             // 
@@ -146,67 +159,37 @@
             this.logout_button.TabIndex = 36;
             this.logout_button.Text = "LOGOUT";
             this.logout_button.UseVisualStyleBackColor = false;
-            this.logout_button.Click += new System.EventHandler(this.button5_Click);
+            this.logout_button.Click += new System.EventHandler(this.logout_button_Click);
             // 
-            // button4
+            // customers
             // 
-            this.button4.FlatAppearance.BorderSize = 0;
-            this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(3, 393);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(177, 41);
-            this.button4.TabIndex = 35;
-            this.button4.Text = "CUSTOMERS";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.customers.FlatAppearance.BorderSize = 0;
+            this.customers.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
+            this.customers.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
+            this.customers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.customers.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.customers.Location = new System.Drawing.Point(3, 299);
+            this.customers.Name = "customers";
+            this.customers.Size = new System.Drawing.Size(177, 41);
+            this.customers.TabIndex = 35;
+            this.customers.Text = "CUSTOMERS";
+            this.customers.UseVisualStyleBackColor = true;
+            this.customers.Click += new System.EventHandler(this.button4_Click);
             // 
-            // button2
+            // add_products
             // 
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
-            this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(3, 346);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(177, 41);
-            this.button2.TabIndex = 34;
-            this.button2.Text = "ADD PRODUCTS";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
-            // 
-            // button3
-            // 
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(3, 299);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(177, 41);
-            this.button3.TabIndex = 33;
-            this.button3.Text = "ADD CATEGORIES";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button1
-            // 
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
-            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(3, 252);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(177, 41);
-            this.button1.TabIndex = 32;
-            this.button1.Text = "ADD USERS";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.add_products.FlatAppearance.BorderSize = 0;
+            this.add_products.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
+            this.add_products.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
+            this.add_products.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.add_products.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.add_products.Location = new System.Drawing.Point(3, 252);
+            this.add_products.Name = "add_products";
+            this.add_products.Size = new System.Drawing.Size(177, 41);
+            this.add_products.TabIndex = 34;
+            this.add_products.Text = "ADD PRODUCTS";
+            this.add_products.UseVisualStyleBackColor = true;
+            this.add_products.Click += new System.EventHandler(this.add_products_Click);
             // 
             // dashboard_button
             // 
@@ -233,7 +216,6 @@
             this.label1.Size = new System.Drawing.Size(90, 22);
             this.label1.TabIndex = 31;
             this.label1.Text = "WELCOME!";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // logo
             // 
@@ -243,69 +225,68 @@
             this.logo.Size = new System.Drawing.Size(150, 150);
             this.logo.TabIndex = 30;
             this.logo.TabStop = false;
-            this.logo.Click += new System.EventHandler(this.logo_Click);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.adminDashboard2);
+            this.panel3.Controls.Add(this.adminAddProducts1);
+            this.panel3.Controls.Add(this.cashierCustomersForm1);
+            this.panel3.Controls.Add(this.cashierOrders2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(183, 56);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1121, 738);
+            this.panel3.TabIndex = 3;
+            // 
+            // cashierOrders2
+            // 
+            this.cashierOrders2.Location = new System.Drawing.Point(0, 0);
+            this.cashierOrders2.Name = "cashierOrders2";
+            this.cashierOrders2.Size = new System.Drawing.Size(1121, 738);
+            this.cashierOrders2.TabIndex = 0;
             // 
             // cashierCustomersForm1
             // 
-            this.cashierCustomersForm1.Location = new System.Drawing.Point(183, 56);
+            this.cashierCustomersForm1.Location = new System.Drawing.Point(0, 0);
             this.cashierCustomersForm1.Name = "cashierCustomersForm1";
             this.cashierCustomersForm1.Size = new System.Drawing.Size(1121, 738);
-            this.cashierCustomersForm1.TabIndex = 2;
+            this.cashierCustomersForm1.TabIndex = 1;
             // 
             // adminAddProducts1
             // 
-            this.adminAddProducts1.Location = new System.Drawing.Point(183, 56);
+            this.adminAddProducts1.Location = new System.Drawing.Point(0, 0);
             this.adminAddProducts1.Margin = new System.Windows.Forms.Padding(2);
             this.adminAddProducts1.Name = "adminAddProducts1";
             this.adminAddProducts1.Size = new System.Drawing.Size(1121, 738);
-            this.adminAddProducts1.TabIndex = 3;
+            this.adminAddProducts1.TabIndex = 2;
             // 
-            // adminAddCategories1
+            // adminDashboard2
             // 
-            this.adminAddCategories1.Location = new System.Drawing.Point(183, 56);
-            this.adminAddCategories1.Margin = new System.Windows.Forms.Padding(2);
-            this.adminAddCategories1.Name = "adminAddCategories1";
-            this.adminAddCategories1.Size = new System.Drawing.Size(1121, 738);
-            this.adminAddCategories1.TabIndex = 4;
+            this.adminDashboard2.Location = new System.Drawing.Point(0, 0);
+            this.adminDashboard2.Name = "adminDashboard2";
+            this.adminDashboard2.Size = new System.Drawing.Size(1121, 738);
+            this.adminDashboard2.TabIndex = 3;
             // 
-            // adminAddUsers1
-            // 
-            this.adminAddUsers1.Location = new System.Drawing.Point(183, 56);
-            this.adminAddUsers1.Name = "adminAddUsers1";
-            this.adminAddUsers1.Size = new System.Drawing.Size(1121, 738);
-            this.adminAddUsers1.TabIndex = 5;
-            // 
-            // adminDashboard1
-            // 
-            this.adminDashboard1.Location = new System.Drawing.Point(183, 56);
-            this.adminDashboard1.Name = "adminDashboard1";
-            this.adminDashboard1.Size = new System.Drawing.Size(1121, 738);
-            this.adminDashboard1.TabIndex = 6;
-            // 
-            // MainForm
+            // CasherMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1304, 794);
-            this.Controls.Add(this.adminDashboard1);
-            this.Controls.Add(this.adminAddUsers1);
-            this.Controls.Add(this.adminAddCategories1);
-            this.Controls.Add(this.adminAddProducts1);
-            this.Controls.Add(this.cashierCustomersForm1);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximizeBox = false;
-            this.Name = "MainForm";
+            this.Name = "CasherMainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MainForm";
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            this.Text = "CasherMainForm";
+            this.Load += new System.EventHandler(this.CasherMainForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -313,23 +294,24 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button exit_button;
-        private System.Windows.Forms.Label smartstock_label;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.PictureBox logo;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button dashboard_button;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button logout_button;
+        private System.Windows.Forms.Label smartstock_label;
+        private System.Windows.Forms.Button exit_button;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private CashierCustomersForm cashierCustomersForm1;
-        private AdminAddProducts adminAddProducts1;
-        private AdminAddCategories adminAddCategories1;
-        private AdminAddUsers adminAddUsers1;
+        private System.Windows.Forms.Button logout_button;
+        private System.Windows.Forms.Button customers;
+        private System.Windows.Forms.Button add_products;
+        private System.Windows.Forms.Button dashboard_button;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox logo;
+        private System.Windows.Forms.Button orders;
+        private System.Windows.Forms.Panel panel3;
         private AdminDashboard adminDashboard1;
+        private CashierOrders cashierOrders1;
+        private CashierCustomersForm cashierCustomersForm1;
+        private CashierOrders cashierOrders2;
+        private AdminDashboard adminDashboard2;
+        private AdminAddProducts adminAddProducts1;
     }
 }
