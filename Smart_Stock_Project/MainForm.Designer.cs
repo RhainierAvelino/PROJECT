@@ -34,6 +34,8 @@
             this.smartstock_label = new System.Windows.Forms.Label();
             this.exit_button = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.sales_forecasting_button = new System.Windows.Forms.Button();
+            this.AprioriAnalysis_button = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.logout_button = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
@@ -43,10 +45,12 @@
             this.dashboard_button = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.logo = new System.Windows.Forms.PictureBox();
-            this.cashierCustomersForm1 = new Smart_Stock_Project.CashierCustomersForm();
-            this.adminAddProducts1 = new Smart_Stock_Project.AdminAddProducts();
-            this.adminAddCategories1 = new Smart_Stock_Project.AdminAddCategories();
+            this.aprioriAnalysis1 = new Smart_Stock_Project.AprioriAnalysis();
             this.adminAddUsers1 = new Smart_Stock_Project.AdminAddUsers();
+            this.adminAddCategories1 = new Smart_Stock_Project.AdminAddCategories();
+            this.adminAddProducts1 = new Smart_Stock_Project.AdminAddProducts();
+            this.cashierCustomersForm1 = new Smart_Stock_Project.CashierCustomersForm();
+            this.salesForecasting1 = new Smart_Stock_Project.SalesForecasting();
             this.adminDashboard1 = new Smart_Stock_Project.AdminDashboard();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -107,6 +111,8 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(242)))), ((int)(((byte)(230)))));
+            this.panel2.Controls.Add(this.sales_forecasting_button);
+            this.panel2.Controls.Add(this.AprioriAnalysis_button);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.logout_button);
             this.panel2.Controls.Add(this.button4);
@@ -121,6 +127,36 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(183, 738);
             this.panel2.TabIndex = 1;
+            // 
+            // sales_forecasting_button
+            // 
+            this.sales_forecasting_button.FlatAppearance.BorderSize = 0;
+            this.sales_forecasting_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
+            this.sales_forecasting_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
+            this.sales_forecasting_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.sales_forecasting_button.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sales_forecasting_button.Location = new System.Drawing.Point(3, 487);
+            this.sales_forecasting_button.Name = "sales_forecasting_button";
+            this.sales_forecasting_button.Size = new System.Drawing.Size(177, 41);
+            this.sales_forecasting_button.TabIndex = 38;
+            this.sales_forecasting_button.Text = "SALES FORECASTING";
+            this.sales_forecasting_button.UseVisualStyleBackColor = true;
+            this.sales_forecasting_button.Click += new System.EventHandler(this.sales_forecasting_button_Click);
+            // 
+            // AprioriAnalysis_button
+            // 
+            this.AprioriAnalysis_button.FlatAppearance.BorderSize = 0;
+            this.AprioriAnalysis_button.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
+            this.AprioriAnalysis_button.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
+            this.AprioriAnalysis_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AprioriAnalysis_button.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AprioriAnalysis_button.Location = new System.Drawing.Point(3, 440);
+            this.AprioriAnalysis_button.Name = "AprioriAnalysis_button";
+            this.AprioriAnalysis_button.Size = new System.Drawing.Size(177, 41);
+            this.AprioriAnalysis_button.TabIndex = 37;
+            this.AprioriAnalysis_button.Text = "SMART BUNDLING";
+            this.AprioriAnalysis_button.UseVisualStyleBackColor = true;
+            this.AprioriAnalysis_button.Click += new System.EventHandler(this.button5_Click_1);
             // 
             // pictureBox1
             // 
@@ -228,7 +264,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.label1.Location = new System.Drawing.Point(42, 178);
+            this.label1.Location = new System.Drawing.Point(47, 178);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(90, 22);
             this.label1.TabIndex = 31;
@@ -245,20 +281,19 @@
             this.logo.TabStop = false;
             this.logo.Click += new System.EventHandler(this.logo_Click);
             // 
-            // cashierCustomersForm1
+            // aprioriAnalysis1
             // 
-            this.cashierCustomersForm1.Location = new System.Drawing.Point(183, 56);
-            this.cashierCustomersForm1.Name = "cashierCustomersForm1";
-            this.cashierCustomersForm1.Size = new System.Drawing.Size(1121, 738);
-            this.cashierCustomersForm1.TabIndex = 2;
+            this.aprioriAnalysis1.Location = new System.Drawing.Point(183, 56);
+            this.aprioriAnalysis1.Name = "aprioriAnalysis1";
+            this.aprioriAnalysis1.Size = new System.Drawing.Size(1121, 738);
+            this.aprioriAnalysis1.TabIndex = 6;
             // 
-            // adminAddProducts1
+            // adminAddUsers1
             // 
-            this.adminAddProducts1.Location = new System.Drawing.Point(183, 56);
-            this.adminAddProducts1.Margin = new System.Windows.Forms.Padding(2);
-            this.adminAddProducts1.Name = "adminAddProducts1";
-            this.adminAddProducts1.Size = new System.Drawing.Size(1121, 738);
-            this.adminAddProducts1.TabIndex = 3;
+            this.adminAddUsers1.Location = new System.Drawing.Point(183, 56);
+            this.adminAddUsers1.Name = "adminAddUsers1";
+            this.adminAddUsers1.Size = new System.Drawing.Size(1121, 738);
+            this.adminAddUsers1.TabIndex = 5;
             // 
             // adminAddCategories1
             // 
@@ -268,19 +303,34 @@
             this.adminAddCategories1.Size = new System.Drawing.Size(1121, 738);
             this.adminAddCategories1.TabIndex = 4;
             // 
-            // adminAddUsers1
+            // adminAddProducts1
             // 
-            this.adminAddUsers1.Location = new System.Drawing.Point(183, 56);
-            this.adminAddUsers1.Name = "adminAddUsers1";
-            this.adminAddUsers1.Size = new System.Drawing.Size(1121, 738);
-            this.adminAddUsers1.TabIndex = 5;
+            this.adminAddProducts1.Location = new System.Drawing.Point(183, 56);
+            this.adminAddProducts1.Margin = new System.Windows.Forms.Padding(2);
+            this.adminAddProducts1.Name = "adminAddProducts1";
+            this.adminAddProducts1.Size = new System.Drawing.Size(1121, 738);
+            this.adminAddProducts1.TabIndex = 3;
+            // 
+            // cashierCustomersForm1
+            // 
+            this.cashierCustomersForm1.Location = new System.Drawing.Point(183, 56);
+            this.cashierCustomersForm1.Name = "cashierCustomersForm1";
+            this.cashierCustomersForm1.Size = new System.Drawing.Size(1121, 738);
+            this.cashierCustomersForm1.TabIndex = 2;
+            // 
+            // salesForecasting1
+            // 
+            this.salesForecasting1.Location = new System.Drawing.Point(183, 56);
+            this.salesForecasting1.Name = "salesForecasting1";
+            this.salesForecasting1.Size = new System.Drawing.Size(1121, 738);
+            this.salesForecasting1.TabIndex = 7;
             // 
             // adminDashboard1
             // 
             this.adminDashboard1.Location = new System.Drawing.Point(183, 56);
             this.adminDashboard1.Name = "adminDashboard1";
             this.adminDashboard1.Size = new System.Drawing.Size(1121, 738);
-            this.adminDashboard1.TabIndex = 6;
+            this.adminDashboard1.TabIndex = 8;
             // 
             // MainForm
             // 
@@ -288,6 +338,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1304, 794);
             this.Controls.Add(this.adminDashboard1);
+            this.Controls.Add(this.salesForecasting1);
+            this.Controls.Add(this.aprioriAnalysis1);
             this.Controls.Add(this.adminAddUsers1);
             this.Controls.Add(this.adminAddCategories1);
             this.Controls.Add(this.adminAddProducts1);
@@ -327,9 +379,13 @@
         private System.Windows.Forms.Button logout_button;
         private System.Windows.Forms.PictureBox pictureBox1;
         private CashierCustomersForm cashierCustomersForm1;
+        private System.Windows.Forms.Button AprioriAnalysis_button;
         private AdminAddProducts adminAddProducts1;
         private AdminAddCategories adminAddCategories1;
         private AdminAddUsers adminAddUsers1;
+        private AprioriAnalysis aprioriAnalysis1;
+        private System.Windows.Forms.Button sales_forecasting_button;
+        private SalesForecasting salesForecasting1;
         private AdminDashboard adminDashboard1;
     }
 }

@@ -71,9 +71,36 @@ namespace Smart_Stock_Project
 
         public void displayallOrders()
         {
-            OrdersData odData = new OrdersData();
-            List<OrdersData> listData = odData.AllOrdersData();
-            dataGridView2.DataSource = listData;
+            IDGenerator(); // Ensure we have the current customer ID
+
+            if (CheckConnection())
+            {
+                try
+                {
+                    connect.Open();
+                    string selectData = "SELECT * FROM orders WHERE customer_id = @customer_id";
+
+                    using (SqlCommand cmd = new SqlCommand(selectData, connect))
+                    {
+                        cmd.Parameters.AddWithValue("@customer_id", idGen);
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dataTable = new DataTable();
+                            adapter.Fill(dataTable);
+                            dataGridView2.DataSource = dataTable;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading orders: " + ex, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    connect.Close();
+                }
+            }
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -873,26 +900,31 @@ namespace Smart_Stock_Project
 
         private int rowIndex = 0;
 
+
         private void cashierOrder_receipt_Click(object sender, EventArgs e)
         {
-            // VALIDATION: empty or zero
+            // VALIDATION: Check if there are orders to print
+            if (dataGridView2.Rows.Count <= 0)
+            {
+                MessageBox.Show("No items found in the order list.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // VALIDATION: Check if amount is entered and valid
             if (string.IsNullOrWhiteSpace(cashierOrder_amount.Text) || cashierOrder_amount.Text == "0")
             {
                 MessageBox.Show("Please enter a valid amount before printing the receipt.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // VALIDATION: non-numeric input 
+            // VALIDATION: Check if amount is numeric
             if (!decimal.TryParse(cashierOrder_amount.Text.Trim(), out decimal inputAmount))
             {
                 MessageBox.Show("Invalid amount format. Please enter numbers only.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Format the amount to ensure consistency 
-            cashierOrder_amount.Text = inputAmount.ToString("F2");
-
-            // VALIDATION: amount is less than total price
+            // VALIDATION: Check if amount is sufficient
             decimal totalPriceDecimal = Convert.ToDecimal(totalPrice);
             if (inputAmount < totalPriceDecimal)
             {
@@ -900,141 +932,286 @@ namespace Smart_Stock_Project
                 return;
             }
 
+            // Calculate and display change
             decimal change = inputAmount - totalPriceDecimal;
             cashierOrder_change.Text = change.ToString("F2");
-
-            if (dataGridView2.Rows.Count <= 0)
-            {
-                MessageBox.Show("No items found in the order list.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
 
             var confirm = MessageBox.Show("Print receipt now?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (confirm == DialogResult.No) return;
 
-            printDocument1.PrintPage -= printDocument1_PrintPage;
+            // Configure print document
+            printDocument1.PrintPage -= printDocument1_PrintPage; // Remove any existing handlers
             printDocument1.BeginPrint -= printDocument1_BeginPrint;
 
             printDocument1.PrintPage += printDocument1_PrintPage;
             printDocument1.BeginPrint += printDocument1_BeginPrint;
 
+            // Show print preview
             printPreviewDialog1.Document = printDocument1;
             printPreviewDialog1.ShowDialog();
-
         }
 
         private void printDocument1_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            rowIndex = 0; // Reset row index for each print
+            rowIndex = 0; // Reset row index for each print job
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
+            // Ensure we have the latest total price
             displayTotalPrice();
 
-            float y = 0;
-            int count = 0;
-            int columnWidth = 110;
-            int headerMargin = 10;
-            int tableMargin = 20;
+            // Font definitions
+            Font headerFont = new Font("Arial", 14, FontStyle.Bold);
+            Font subHeaderFont = new Font("Arial", 12, FontStyle.Bold);
+            Font regularFont = new Font("Arial", 10);
+            Font boldFont = new Font("Arial", 10, FontStyle.Bold);
+            Font footerFont = new Font("Arial", 9);
 
-            Font headerFont = new Font("Arial", 16, FontStyle.Bold);
-            Font font = new Font("Arial", 10);
-            Font labelFont = new Font("Arial", 10, FontStyle.Bold);
+            // Layout settings
+            float yPos = e.MarginBounds.Top;
+            float leftMargin = e.MarginBounds.Left;
+            float pageWidth = e.MarginBounds.Width;
+            float lineHeight = regularFont.GetHeight(e.Graphics);
 
-            float marginTop = e.MarginBounds.Top;
-            float totalTableWidth = columnWidth * 7; // 7 columns
-            float tableStartX = e.MarginBounds.Left + (e.MarginBounds.Width - totalTableWidth) / 2;
-
-            StringFormat alignCenter = new StringFormat
+            // String format for center alignment
+            StringFormat centerFormat = new StringFormat
             {
                 Alignment = StringAlignment.Center,
                 LineAlignment = StringAlignment.Center
             };
 
-            // Draw header
-            string headerText = "Smart Stock Inventory System\nCashier Orders Receipt\n\n";
-            float centerX = e.MarginBounds.Left + (e.MarginBounds.Width / 2);
-            y = marginTop + count * headerFont.GetHeight(e.Graphics) + headerMargin;
-            e.Graphics.DrawString(headerText, headerFont, Brushes.Black, centerX, y, alignCenter);
-            count++;
-            y += tableMargin;
-
-            // Draw table headers centered
-            string[] header = { "Customer ID", "Product ID", "Product Name", "Category", "Original Price", "Quantity", "Total Price" };
-            for (int i = 0; i < header.Length; i++)
+            StringFormat rightFormat = new StringFormat
             {
-                e.Graphics.DrawString(header[i], labelFont, Brushes.Black, tableStartX + i * columnWidth, y);
+                Alignment = StringAlignment.Far,
+                LineAlignment = StringAlignment.Center
+            };
+
+            // 1. HEADER SECTION
+            string businessName = "Smart Stock Inventory System";
+            string receiptTitle = "CASHIER RECEIPT";
+
+            e.Graphics.DrawString(businessName, headerFont, Brushes.Black,
+                leftMargin + (pageWidth / 2), yPos, centerFormat);
+            yPos += headerFont.GetHeight(e.Graphics) + 5;
+
+            e.Graphics.DrawString(receiptTitle, subHeaderFont, Brushes.Black,
+                leftMargin + (pageWidth / 2), yPos, centerFormat);
+            yPos += subHeaderFont.GetHeight(e.Graphics) + 10;
+
+            // Date and Customer ID
+            IDGenerator(); // Ensure we have current customer ID
+            string dateTime = DateTime.Now.ToString("MM/dd/yyyy hh:mm tt");
+            string customerInfo = $"Customer ID: {idGen}";
+
+            e.Graphics.DrawString(dateTime, regularFont, Brushes.Black, leftMargin, yPos);
+            e.Graphics.DrawString(customerInfo, regularFont, Brushes.Black, leftMargin + pageWidth, yPos, rightFormat);
+            yPos += lineHeight + 10;
+
+            // Separator line
+            e.Graphics.DrawLine(Pens.Black, leftMargin, yPos, leftMargin + pageWidth, yPos);
+            yPos += 10;
+
+            // 2. ITEMS SECTION
+            e.Graphics.DrawString("ITEMS ORDERED:", boldFont, Brushes.Black, leftMargin, yPos);
+            yPos += lineHeight + 5;
+
+            // Column headers
+            string[] headers = { "Item", "Qty", "Price", "Total" };
+            float[] columnWidths = { pageWidth * 0.5f, pageWidth * 0.15f, pageWidth * 0.175f, pageWidth * 0.175f };
+            float[] columnPositions = new float[4];
+
+            columnPositions[0] = leftMargin;
+            for (int i = 1; i < columnPositions.Length; i++)
+            {
+                columnPositions[i] = columnPositions[i - 1] + columnWidths[i - 1];
             }
 
-            count++;
-            y += font.GetHeight(e.Graphics);
-            float tableBottomLimit = e.MarginBounds.Bottom - 120;
+            // Draw headers
+            for (int i = 0; i < headers.Length; i++)
+            {
+                StringFormat headerFormat = (i == 0) ? new StringFormat() : rightFormat;
+                e.Graphics.DrawString(headers[i], boldFont, Brushes.Black,
+                    columnPositions[i] + (i == 0 ? 0 : columnWidths[i]), yPos, headerFormat);
+            }
+            yPos += lineHeight + 3;
 
-            // Draw table data
+            // Draw separator
+            e.Graphics.DrawLine(Pens.Black, leftMargin, yPos, leftMargin + pageWidth, yPos);
+            yPos += 8;
+
+            // 3. ITEMS DATA
+            float itemSectionBottom = e.MarginBounds.Bottom - 150; // Reserve space for footer
+
             while (rowIndex < dataGridView2.Rows.Count)
             {
+                if (yPos > itemSectionBottom)
+                {
+                    e.HasMorePages = true;
+                    return; // Continue on next page
+                }
+
                 DataGridViewRow row = dataGridView2.Rows[rowIndex];
 
-                for (int i = 0; i < dataGridView2.Columns.Count && i < header.Length; i++)
-                {
-                    object cellValue = row.Cells[i].Value;
-                    string cell = (cellValue != null) ? cellValue.ToString() : string.Empty;
+                // Extract data safely - CORRECTED VERSION
+                string productName = "";
+                string quantity = "0";
+                string origPrice = "0.00";
+                string totalPrice = "0.00";
 
-                    // Format price columns to show 2 decimal places
-                    if (i == 4 || i == 6) // Original Price and Total Price columns
+                try
+                {
+                    // Method 1: Try to find columns by name (case-insensitive)
+                    bool foundProductName = false;
+                    bool foundQuantity = false;
+                    bool foundOrigPrice = false;
+                    bool foundTotalPrice = false;
+
+                    for (int i = 0; i < dataGridView2.Columns.Count; i++)
                     {
-                        if (float.TryParse(cell, out float priceValue))
+                        string columnName = dataGridView2.Columns[i].Name.ToLower();
+
+                        if ((columnName.Contains("prod_name") || columnName.Contains("product") || columnName.Contains("name")) && !foundProductName)
                         {
-                            cell = priceValue.ToString("F2");
+                            productName = row.Cells[i].Value?.ToString() ?? "";
+                            foundProductName = true;
+                        }
+                        else if ((columnName.Contains("quantity") || columnName.Contains("qty")) && !foundQuantity)
+                        {
+                            quantity = row.Cells[i].Value?.ToString() ?? "0";
+                            foundQuantity = true;
+                        }
+                        else if ((columnName.Contains("orig_price") || (columnName.Contains("price") && !columnName.Contains("total"))) && !foundOrigPrice)
+                        {
+                            if (float.TryParse(row.Cells[i].Value?.ToString(), out float price))
+                            {
+                                origPrice = price.ToString("F2");
+                                foundOrigPrice = true;
+                            }
+                        }
+                        else if ((columnName.Contains("total_price") || columnName.Contains("total")) && !foundTotalPrice)
+                        {
+                            if (float.TryParse(row.Cells[i].Value?.ToString(), out float total))
+                            {
+                                totalPrice = total.ToString("F2");
+                                foundTotalPrice = true;
+                            }
                         }
                     }
 
-                    e.Graphics.DrawString(cell, font, Brushes.Black, tableStartX + i * columnWidth, y);
+                    // Method 2: Fallback to expected indices if names don't work
+                    // Based on typical OrdersData structure: ID, CustomerID, ProdID, ProdName, Category, OrigPrice, Quantity, TotalPrice, OrderDate
+                    if (!foundProductName && row.Cells.Count > 3)
+                    {
+                        productName = row.Cells[3].Value?.ToString() ?? ""; // ProdName is usually at index 3
+                    }
+                    if (!foundQuantity && row.Cells.Count > 6)
+                    {
+                        quantity = row.Cells[6].Value?.ToString() ?? "0"; // Quantity is usually at index 6
+                    }
+                    if (!foundOrigPrice && row.Cells.Count > 5)
+                    {
+                        if (float.TryParse(row.Cells[5].Value?.ToString(), out float price))
+                        {
+                            origPrice = price.ToString("F2"); // OrigPrice is usually at index 5
+                        }
+                    }
+                    if (!foundTotalPrice && row.Cells.Count > 7)
+                    {
+                        if (float.TryParse(row.Cells[7].Value?.ToString(), out float total))
+                        {
+                            totalPrice = total.ToString("F2"); // TotalPrice is usually at index 7
+                        }
+                    }
+
+                    // Additional validation - ensure we have at least basic data
+                    if (string.IsNullOrEmpty(productName))
+                    {
+                        productName = "Unknown Item";
+                    }
+                    if (quantity == "0" || string.IsNullOrEmpty(quantity))
+                    {
+                        quantity = "1";
+                    }
+                    if (origPrice == "0.00" && !string.IsNullOrEmpty(totalPrice) && totalPrice != "0.00")
+                    {
+                        // Calculate original price from total and quantity if possible
+                        if (float.TryParse(totalPrice, out float total) && int.TryParse(quantity, out int qty) && qty > 0)
+                        {
+                            origPrice = (total / qty).ToString("F2");
+                        }
+                    }
                 }
-
-                rowIndex++;
-                y += font.GetHeight(e.Graphics);
-
-                if (y > tableBottomLimit)
+                catch (Exception ex)
                 {
-                    e.HasMorePages = true;
-                    return;
+                    // If all else fails, use basic row data
+                    productName = "Item Error";
+                    quantity = "1";
+                    origPrice = "0.00";
+                    totalPrice = "0.00";
                 }
+
+                // Draw item data
+                e.Graphics.DrawString(productName, regularFont, Brushes.Black, columnPositions[0], yPos);
+                e.Graphics.DrawString(quantity, regularFont, Brushes.Black,
+                    columnPositions[1] + columnWidths[1], yPos, rightFormat);
+                e.Graphics.DrawString("₱" + origPrice, regularFont, Brushes.Black,
+                    columnPositions[2] + columnWidths[2], yPos, rightFormat);
+                e.Graphics.DrawString("₱" + totalPrice, regularFont, Brushes.Black,
+                    columnPositions[3] + columnWidths[3], yPos, rightFormat);
+
+                yPos += lineHeight + 2;
+                rowIndex++;
             }
 
-            //Footer
-            float footerStartY = e.MarginBounds.Bottom - 90;
-            float footerX = e.MarginBounds.Right - 250; 
-
-            // Parse and format footer values to ensure 2 decimal places
-            float amountValue = float.TryParse(cashierOrder_amount.Text.Trim(), out amountValue) ? amountValue : 0;
-            float changeValue = float.TryParse(cashierOrder_change.Text, out changeValue) ? changeValue : 0;
-
-            string[] footerLines = new string[]
+            // 4. FOOTER SECTION (only on last page)
+            if (rowIndex >= dataGridView2.Rows.Count)
             {
-                $"Total Price:\t₱{totalPrice:F2}",
-                $"Amount:\t₱{amountValue:F2}",
-                "--------------------------------------------",
-                $"Change:\t₱{changeValue:F2}"
-            };
+                yPos += 10;
+                e.Graphics.DrawLine(Pens.Black, leftMargin, yPos, leftMargin + pageWidth, yPos);
+                yPos += 10;
 
-            for (int i = 0; i < footerLines.Length; i++)
-            {
-                e.Graphics.DrawString(footerLines[i], labelFont, Brushes.Black, footerX, footerStartY + (i * font.GetHeight(e.Graphics)));
+                // Parse amounts safely
+                decimal amountValue = decimal.TryParse(cashierOrder_amount.Text.Trim(), out amountValue) ? amountValue : 0;
+                decimal changeValue = decimal.TryParse(cashierOrder_change.Text, out changeValue) ? changeValue : 0;
+
+                // Total section
+                string[] footerLabels = { "SUBTOTAL:", "AMOUNT PAID:", "CHANGE:" };
+                string[] footerValues = {
+            "₱" + totalPrice.ToString("F2"),
+            "₱" + amountValue.ToString("F2"),
+            "₱" + changeValue.ToString("F2")
+        };
+
+                for (int i = 0; i < footerLabels.Length; i++)
+                {
+                    Font currentFont = (i == footerLabels.Length - 1) ? boldFont : regularFont;
+
+                    e.Graphics.DrawString(footerLabels[i], currentFont, Brushes.Black,
+                        leftMargin + pageWidth * 0.6f, yPos);
+                    e.Graphics.DrawString(footerValues[i], currentFont, Brushes.Black,
+                        leftMargin + pageWidth, yPos, rightFormat);
+                    yPos += lineHeight + 3;
+                }
+
+                // Thank you message
+                yPos += 15;
+                e.Graphics.DrawString("Thank you for your purchase!", boldFont, Brushes.Black,
+                    leftMargin + (pageWidth / 2), yPos, centerFormat);
+                yPos += lineHeight + 5;
+
+                e.Graphics.DrawString("Please keep this receipt for your records.", footerFont, Brushes.Black,
+                    leftMargin + (pageWidth / 2), yPos, centerFormat);
             }
 
-            string dateStamp = DateTime.Now.ToString("\n\n\n\nMM/dd/yyyy hh:mm tt");
-            float dateY = footerStartY + 5 * font.GetHeight(e.Graphics) + 5;
-            float dateX = e.MarginBounds.Right + 45;
-
-            StringFormat alignRight = new StringFormat
-            {
-                Alignment = StringAlignment.Far,
-                LineAlignment = StringAlignment.Near
-            };
-
-            e.Graphics.DrawString(dateStamp, labelFont, Brushes.Black, dateX, dateY, alignRight);
+            // Dispose fonts
+            headerFont.Dispose();
+            subHeaderFont.Dispose();
+            regularFont.Dispose();
+            boldFont.Dispose();
+            footerFont.Dispose();
+            centerFormat.Dispose();
+            rightFormat.Dispose();
         }
 
 
@@ -1050,6 +1227,11 @@ namespace Smart_Stock_Project
         }
 
         private void CashierOrders_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

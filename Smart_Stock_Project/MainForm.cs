@@ -52,6 +52,10 @@ namespace Smart_Stock_Project
                 adminAddProducts1.Visible = false;
             if (cashierCustomersForm1 != null)
                 cashierCustomersForm1.Visible = false;
+            if (aprioriAnalysis1 != null)
+                aprioriAnalysis1.Visible = false;
+            if (salesForecasting1 != null)
+                salesForecasting1.Visible = false;
 
             AdminAddUsers aaForm = adminAddUsers1 as AdminAddUsers;
             if (aaForm != null)
@@ -73,6 +77,10 @@ namespace Smart_Stock_Project
                 adminAddProducts1.Visible = false;
             if (cashierCustomersForm1 != null)
                 cashierCustomersForm1.Visible = true;
+            if (aprioriAnalysis1 != null)
+                aprioriAnalysis1.Visible = false;
+            if (salesForecasting1 != null)
+                salesForecasting1.Visible = false;
 
             CashierCustomersForm ccForm = cashierCustomersForm1 as CashierCustomersForm;
             if (ccForm != null)
@@ -162,6 +170,10 @@ namespace Smart_Stock_Project
                 adminAddProducts1.Visible = false;
             if (cashierCustomersForm1 != null)
                 cashierCustomersForm1.Visible = false;
+            if (aprioriAnalysis1 != null)
+                aprioriAnalysis1.Visible = false;
+            if (salesForecasting1 != null)
+                salesForecasting1.Visible = false;
 
             AdminDashboard adForm = adminDashboard1 as AdminDashboard;
 
@@ -184,6 +196,10 @@ namespace Smart_Stock_Project
                 adminAddProducts1.Visible = false;
             if (cashierCustomersForm1 != null)
                 cashierCustomersForm1.Visible = false;
+            if (aprioriAnalysis1 != null)
+                aprioriAnalysis1.Visible = false;
+            if (salesForecasting1 != null)
+                salesForecasting1.Visible = false;
 
             AdminAddCategories aacForm = adminAddCategories1 as AdminAddCategories;
             if (aacForm != null)
@@ -205,12 +221,68 @@ namespace Smart_Stock_Project
                 adminAddProducts1.Visible = true;
             if (cashierCustomersForm1 != null)
                 cashierCustomersForm1.Visible = false;
+            if (aprioriAnalysis1 != null)
+                aprioriAnalysis1.Visible = false;
+            if (salesForecasting1 != null)
+                salesForecasting1.Visible = false;
 
             AdminAddProducts aapForm = adminAddProducts1 as AdminAddProducts;
             if (aapForm != null)
             {
                 aapForm.refreshData();
             }
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            if (adminDashboard1 != null)
+                adminDashboard1.Visible = false;
+            if (adminAddUsers1 != null)
+                adminAddUsers1.Visible = false;
+            if (adminAddCategories1 != null)
+                adminAddCategories1.Visible = false;
+            if (adminAddProducts1 != null)
+                adminAddProducts1.Visible = false;
+            if (cashierCustomersForm1 != null)
+                cashierCustomersForm1.Visible = false;
+            if (aprioriAnalysis1 != null)
+                aprioriAnalysis1.Visible = true;
+            if (salesForecasting1 != null)
+                salesForecasting1.Visible = false;
+
+        }
+
+        private void adminDashboard1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void adminDashboard1_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void salesForecasting1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void sales_forecasting_button_Click(object sender, EventArgs e)
+        {
+            if (adminDashboard1 != null)
+                adminDashboard1.Visible = false;
+            if (adminAddUsers1 != null)
+                adminAddUsers1.Visible = false;
+            if (adminAddCategories1 != null)
+                adminAddCategories1.Visible = false;
+            if (adminAddProducts1 != null)
+                adminAddProducts1.Visible = false;
+            if (cashierCustomersForm1 != null)
+                cashierCustomersForm1.Visible = false;
+            if (aprioriAnalysis1 != null)
+                aprioriAnalysis1.Visible = false;
+            if (salesForecasting1 != null)
+                salesForecasting1.Visible = true;
         }
     }
 }

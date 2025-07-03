@@ -89,6 +89,12 @@
     <Compile Include="AdminDashboard.Designer.cs">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </Compile>
+    <Compile Include="AprioriAnalysis.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AprioriAnalysis.Designer.cs">
+      <DependentUpon>AprioriAnalysis.cs</DependentUpon>
+    </Compile>
     <Compile Include="CasherMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,12 @@
     <Compile Include="RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SalesForecasting.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SalesForecasting.Designer.cs">
+      <DependentUpon>SalesForecasting.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsersData.cs" />
     <EmbeddedResource Include="AdminAddCategories.resx">
       <DependentUpon>AdminAddCategories.cs</DependentUpon>
@@ -153,6 +165,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AdminDashboard.resx">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AprioriAnalysis.resx">
+      <DependentUpon>AprioriAnalysis.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CasherMainForm.resx">
       <DependentUpon>CasherMainForm.cs</DependentUpon>
@@ -180,6 +195,9 @@
     </Compile>
     <EmbeddedResource Include="RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SalesForecasting.resx">
+      <DependentUpon>SalesForecasting.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="inventoryDataSet.xsc">
       <DependentUpon>inventoryDataSet.xsd</DependentUpon>

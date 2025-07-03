@@ -64,4 +64,6 @@ D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_
 D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_St.E8B87DBD.Up2Date
 D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.exe
 D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.pdb
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.AprioriAnalysis.resources
+D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.SalesForecasting.resources
 D:\Users\User\Documents\3rd year\2ND SEMESTER\APP DEV\Smart_Stock_Project\Smart_Stock_Project\obj\Debug\Smart_Stock_Project.exe.config

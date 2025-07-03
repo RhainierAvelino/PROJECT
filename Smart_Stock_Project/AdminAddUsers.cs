@@ -244,37 +244,51 @@ public bool checkConnection()
                         {
                             connect.Open();
 
-                           
-                                    string updateData = "UPDATE users SET username = @username, password_hash = @password_hash, role = @role, status = @status WHERE id = @id";
+                            string updateData;
+                            SqlCommand updateCmd;
 
-                                    using (SqlCommand updateCmd = new SqlCommand(updateData, connect))
-                                    {
-                                        updateCmd.Parameters.AddWithValue("@username", addUsers_username.Text.Trim());
-                                        updateCmd.Parameters.AddWithValue("@password_hash", HashPassword(addUsers_password.Text.Trim()));
-                                        updateCmd.Parameters.AddWithValue("@role", addUsers_role.SelectedItem);
-                                        updateCmd.Parameters.AddWithValue("@status", addUsers_status.SelectedItem);
-                                        updateCmd.Parameters.AddWithValue("@id", getID);
+                            // Check if password field is empty (meaning don't update password)
+                            if (string.IsNullOrEmpty(addUsers_password.Text.Trim()))
+                            {
+                                // Update without changing password
+                                updateData = "UPDATE users SET username = @username, role = @role, status = @status WHERE id = @id";
+                                updateCmd = new SqlCommand(updateData, connect);
+                                updateCmd.Parameters.AddWithValue("@username", addUsers_username.Text.Trim());
+                                updateCmd.Parameters.AddWithValue("@role", addUsers_role.SelectedItem);
+                                updateCmd.Parameters.AddWithValue("@status", addUsers_status.SelectedItem);
+                                updateCmd.Parameters.AddWithValue("@id", getID);
+                            }
+                            else
+                            {
+                                // Update including password
+                                updateData = "UPDATE users SET username = @username, password_hash = @password_hash, role = @role, status = @status WHERE id = @id";
+                                updateCmd = new SqlCommand(updateData, connect);
+                                updateCmd.Parameters.AddWithValue("@username", addUsers_username.Text.Trim());
+                                updateCmd.Parameters.AddWithValue("@password_hash", HashPassword(addUsers_password.Text.Trim()));
+                                updateCmd.Parameters.AddWithValue("@role", addUsers_role.SelectedItem);
+                                updateCmd.Parameters.AddWithValue("@status", addUsers_status.SelectedItem);
+                                updateCmd.Parameters.AddWithValue("@id", getID);
+                            }
 
-                                        updateCmd.ExecuteNonQuery();
-                                        clearFields();
+                            using (updateCmd)
+                            {
+                                updateCmd.ExecuteNonQuery();
+                                clearFields();
 
-                                        MessageBox.Show("Updated successfully!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        displayAllUsersData();
-                                    }
+                                MessageBox.Show("Updated successfully!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                displayAllUsersData();
+                            }
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show("Connection failed: " + ex, "Error Message", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                         }
                         finally
                         {
                             connect.Close();
                         }
-                     }
-
+                    }
                 }
-
             }
         }
 
