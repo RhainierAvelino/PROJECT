@@ -442,6 +442,7 @@
             this.richTextBoxBusinessInsights.Size = new System.Drawing.Size(407, 343);
             this.richTextBoxBusinessInsights.TabIndex = 0;
             this.richTextBoxBusinessInsights.Text = "📋 Run analysis to see detailed business insights and recommendations...";
+            this.richTextBoxBusinessInsights.TextChanged += new System.EventHandler(this.richTextBoxBusinessInsights_TextChanged);
             // 
             // panelExport
             // 

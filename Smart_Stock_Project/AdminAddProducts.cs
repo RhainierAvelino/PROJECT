@@ -556,5 +556,10 @@ namespace Smart_Stock_Project
         {
 
         }
+
+        private void AdminAddProducts_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

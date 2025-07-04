@@ -204,7 +204,7 @@ namespace Smart_Stock_Project
                 progressBarAnalysis.Value = 50;
 
                 // Run enhanced Apriori algorithm
-                currentRules = RunEnhancedAprioriAlgorithm(currentTransactions, 0.2, 0.5); // Lowered thresholds for more insights //0.2 is the minsupp and 0.5 is minConfi
+                currentRules = RunEnhancedAprioriAlgorithm(currentTransactions, 0.01, 0.3); // Lowered thresholds for more insights //0.2 is the minsupp and 0.5 is minConfi
 
                 lblAnalysisStatus.Text = "Generating business recommendations...";
                 progressBarAnalysis.Value = 80;
@@ -740,6 +740,11 @@ namespace Smart_Stock_Project
         }
 
         private void panelStat2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void richTextBoxBusinessInsights_TextChanged(object sender, EventArgs e)
         {
 
         }

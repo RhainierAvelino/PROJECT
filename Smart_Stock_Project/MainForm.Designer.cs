@@ -45,13 +45,15 @@
             this.dashboard_button = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.logo = new System.Windows.Forms.PictureBox();
+            this.salesForecasting1 = new Smart_Stock_Project.SalesForecasting();
             this.aprioriAnalysis1 = new Smart_Stock_Project.AprioriAnalysis();
             this.adminAddUsers1 = new Smart_Stock_Project.AdminAddUsers();
             this.adminAddCategories1 = new Smart_Stock_Project.AdminAddCategories();
             this.adminAddProducts1 = new Smart_Stock_Project.AdminAddProducts();
             this.cashierCustomersForm1 = new Smart_Stock_Project.CashierCustomersForm();
-            this.salesForecasting1 = new Smart_Stock_Project.SalesForecasting();
+            this.csvDataSeeder1 = new Smart_Stock_Project.CSVDataSeeder();
             this.adminDashboard1 = new Smart_Stock_Project.AdminDashboard();
+            this.csvbutton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -111,6 +113,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(242)))), ((int)(((byte)(230)))));
+            this.panel2.Controls.Add(this.csvbutton);
             this.panel2.Controls.Add(this.sales_forecasting_button);
             this.panel2.Controls.Add(this.AprioriAnalysis_button);
             this.panel2.Controls.Add(this.pictureBox1);
@@ -281,6 +284,13 @@
             this.logo.TabStop = false;
             this.logo.Click += new System.EventHandler(this.logo_Click);
             // 
+            // salesForecasting1
+            // 
+            this.salesForecasting1.Location = new System.Drawing.Point(183, 56);
+            this.salesForecasting1.Name = "salesForecasting1";
+            this.salesForecasting1.Size = new System.Drawing.Size(1121, 738);
+            this.salesForecasting1.TabIndex = 7;
+            // 
             // aprioriAnalysis1
             // 
             this.aprioriAnalysis1.Location = new System.Drawing.Point(183, 56);
@@ -318,19 +328,35 @@
             this.cashierCustomersForm1.Size = new System.Drawing.Size(1121, 738);
             this.cashierCustomersForm1.TabIndex = 2;
             // 
-            // salesForecasting1
+            // csvDataSeeder1
             // 
-            this.salesForecasting1.Location = new System.Drawing.Point(183, 56);
-            this.salesForecasting1.Name = "salesForecasting1";
-            this.salesForecasting1.Size = new System.Drawing.Size(1121, 738);
-            this.salesForecasting1.TabIndex = 7;
+            this.csvDataSeeder1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
+            this.csvDataSeeder1.Location = new System.Drawing.Point(183, 56);
+            this.csvDataSeeder1.Name = "csvDataSeeder1";
+            this.csvDataSeeder1.Size = new System.Drawing.Size(1121, 738);
+            this.csvDataSeeder1.TabIndex = 8;
             // 
             // adminDashboard1
             // 
             this.adminDashboard1.Location = new System.Drawing.Point(183, 56);
             this.adminDashboard1.Name = "adminDashboard1";
             this.adminDashboard1.Size = new System.Drawing.Size(1121, 738);
-            this.adminDashboard1.TabIndex = 8;
+            this.adminDashboard1.TabIndex = 9;
+            // 
+            // csvbutton
+            // 
+            this.csvbutton.FlatAppearance.BorderSize = 0;
+            this.csvbutton.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
+            this.csvbutton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(213)))), ((int)(((byte)(151)))));
+            this.csvbutton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.csvbutton.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.csvbutton.Location = new System.Drawing.Point(0, 534);
+            this.csvbutton.Name = "csvbutton";
+            this.csvbutton.Size = new System.Drawing.Size(177, 41);
+            this.csvbutton.TabIndex = 39;
+            this.csvbutton.Text = "CSV SEEDER";
+            this.csvbutton.UseVisualStyleBackColor = true;
+            this.csvbutton.Click += new System.EventHandler(this.csvbutton_Click);
             // 
             // MainForm
             // 
@@ -338,6 +364,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1304, 794);
             this.Controls.Add(this.adminDashboard1);
+            this.Controls.Add(this.csvDataSeeder1);
             this.Controls.Add(this.salesForecasting1);
             this.Controls.Add(this.aprioriAnalysis1);
             this.Controls.Add(this.adminAddUsers1);
@@ -386,6 +413,8 @@
         private AprioriAnalysis aprioriAnalysis1;
         private System.Windows.Forms.Button sales_forecasting_button;
         private SalesForecasting salesForecasting1;
+        private CSVDataSeeder csvDataSeeder1;
         private AdminDashboard adminDashboard1;
+        private System.Windows.Forms.Button csvbutton;
     }
 }
